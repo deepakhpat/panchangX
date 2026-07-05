@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="पंचांग कृषी मित्र - शेतकऱ्यांसाठी पारंपरिक नक्षत्र वाहन आणि आधुनिक हवामान अंदाज यांचा मिलाफ करणारा हायब्रीड कृषी सल्लागार.">
+    <title>पंचांग कृषी मित्र | Panchang Krishi Mitra</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- App Loading Screen -->
+    <div id="loader" class="loader-overlay">
+        <div class="loader-spinner"></div>
+        <div class="loader-text" id="loader-msg">माहिती लोड होत आहे...</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="flex-col grid-gap-lg">
+        <!-- Header Section -->
+        <header class="glass-card">
+            <div class="brand-section">
+                <span class="brand-icon">🌱</span>
+                <div class="brand-title">
+                    <h1>पंचांग कृषी मित्र</h1>
+                    <p>PANCHANG KRISHI MITRA</p>
+                </div>
+            </div>
+            <div class="controls-section">
+                <!-- District Selector -->
+                <div class="selector-wrapper">
+                    <span>📍 जिल्हा:</span>
+                    <select id="district-select">
+                        <!-- Will be populated dynamically -->
+                        <option value="pune">पुणे (Pune)</option>
+                    </select>
+                </div>
+                <!-- Location Auto Detect Button -->
+                <button id="geo-btn" class="geo-btn">
+                    <span>🛰️ जवळचे स्थान शोधा</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Top Section: Daily Widget & Weather/Advisory -->
+        <div class="dashboard-grid">
+            <!-- Left: Daily Panchang Widget -->
+            <div class="glass-card daily-widget" id="daily-panchang-widget">
+                <div class="card-header">
+                    <h2><i class="v-icon">📅</i> आजचे दैनिक पंचांग</h2>
+                    <span class="shaka-badge" id="shaka-year">शके १९४८</span>
+                </div>
+                <div class="panchang-items">
+                    <div class="panchang-item">
+                        <span class="item-label">तारीख (Gregorian)</span>
+                        <span class="item-value" id="today-gregorian">-</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">मराठी महिना व पक्ष</span>
+                        <span class="item-value" id="today-month-paksha">-</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">तिथी (Tithi)</span>
+                        <span class="item-value" id="today-tithi">-</span>
+                        <span class="item-sub" id="today-tithi-end">वेळ: -</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">नक्षत्र (Nakshatra)</span>
+                        <span class="item-value" id="today-nakshatra">-</span>
+                        <span class="item-sub" id="today-nakshatra-end">वेळ: -</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">योग (Yoga)</span>
+                        <span class="item-value" id="today-yoga">-</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">करण (Karan)</span>
+                        <span class="item-value" id="today-karan">-</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">सूर्य नक्षत्र (Sun Sign)</span>
+                        <span class="item-value" id="today-sun-nak">-</span>
+                    </div>
+                    <div class="panchang-item">
+                        <span class="item-label">सक्रिय वाहन (Active Vahan)</span>
+                        <span class="item-value" id="today-vahan">-</span>
+                    </div>
+                </div>
+                <!-- Sunrise / Sunset Grid -->
+                <div class="sun-times">
+                    <div class="sun-time">
+                        <span class="sun-icon sunrise-icon">🌅</span>
+                        <div class="sun-time-text">
+                            <span>सूर्योदय</span>
+                            <strong id="today-sunrise">-</strong>
+                        </div>
+                    </div>
+                    <div class="sun-time">
+                        <span class="sun-icon sunset-icon">🌇</span>
+                        <div class="sun-time-text">
+                            <span>सूर्यास्त</span>
+                            <strong id="today-sunset">-</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Hybrid Weather & Agricultural Advisory -->
+            <div class="glass-card" id="hybrid-advisory-widget">
+                <div class="card-header">
+                    <h2><i class="v-icon">🌾</i> हायब्रीड कृषी सल्ला व हवामान अंदाज</h2>
+                    <span id="advisory-date" class="shaka-badge" style="background: rgba(41, 182, 246, 0.15); border-color: rgba(41, 182, 246, 0.3); color: var(--accent-blue);">आज</span>
+                </div>
+                <div class="advisory-layout">
+                    <!-- Modern weather metric strip -->
+                    <div class="weather-strip">
+                        <div class="weather-metric">
+                            <i class="v-icon">🌡️</i>
+                            <span class="metric-val" id="weather-temp">-°C</span>
+                            <span class="metric-lbl">तापमान</span>
+                        </div>
+                        <div class="weather-metric">
+                            <i class="v-icon">🌧️</i>
+                            <span class="metric-val" id="weather-rain-prob">-%</span>
+                            <span class="metric-lbl">पाऊस शक्यता</span>
+                        </div>
+                        <div class="weather-metric">
+                            <i class="v-icon">💧</i>
+                            <span class="metric-val" id="weather-humidity">-%</span>
+                            <span class="metric-lbl">आद्रता (Humidity)</span>
+                        </div>
+                        <div class="weather-metric">
+                            <i class="v-icon">💨</i>
+                            <span class="metric-val" id="weather-wind">-.-- km/h</span>
+                            <span class="metric-lbl">वाऱ्याचा वेग</span>
+                        </div>
+                    </div>
+
+                    <!-- Advisory Narrative Area -->
+                    <div class="advisory-body" id="advisory-content">
+                        <!-- Traditional Nakshatra Vahan Alert -->
+                        <div class="vahan-alert" id="vahan-alert-block">
+                            <div class="vahan-avatar-ring" id="vahan-icon">🐘</div>
+                            <div class="vahan-text">
+                                <h4 id="vahan-title">हत्ती वाहन (मुसळधार पाऊस)</h4>
+                                <p id="vahan-description">पारंपरिक अंदाज: अतिवृष्टी, पूर परिस्थिती आणि नद्या ओसंडून वाहतील असा पाऊस.</p>
+                            </div>
+                        </div>
+
+                        <!-- Actionable suggestions -->
+                        <div class="recommendations-container">
+                            <h3 class="recommendations-title">🚜 शेतकऱ्यांसाठी सल्ला (Advisory Recommendation):</h3>
+                            <ul class="recommendations-list" id="recommendations-list">
+                                <li>हवामान डेटा उपलब्ध नाही. कृपया जिल्हा निवडा.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Section: Calendar view -->
+        <div class="glass-card calendar-card">
+            <div class="card-header">
+                <h2><i class="v-icon">📅</i> मासिक कृषी दिनदर्शिका (Monthly Agriculture Calendar)</h2>
+                <div class="calendar-controls">
+                    <button class="cal-btn" id="prev-month-btn">◀</button>
+                    <span class="current-month-display" id="current-month-label">-</span>
+                    <button class="cal-btn" id="next-month-btn">▶</button>
+                </div>
+            </div>
+            <!-- Grid headers for Weekdays -->
+            <div class="calendar-grid" id="calendar-grid-container">
+                <div class="weekday-header">रवि</div>
+                <div class="weekday-header">सोम</div>
+                <div class="weekday-header">मंगळ</div>
+                <div class="weekday-header">बुध</div>
+                <div class="weekday-header">गुरु</div>
+                <div class="weekday-header">शुक्र</div>
+                <div class="weekday-header">शनी</div>
+                <!-- Rest populated by JS -->
+            </div>
+        </div>
+
+        <!-- Monthly Forecast Comparison -->
+        <div class="glass-card forecast-card">
+            <div class="card-header">
+                <h2><i class="v-icon">🌾</i> मासिक हवामान व कृषी मार्गदर्शन (Monthly Forecast & Advisory)</h2>
+                <span class="shaka-badge" style="background: rgba(255, 193, 7, 0.12); border-color: rgba(255, 193, 7, 0.3); color: #ffca28;">दैनिक तुलना</span>
+            </div>
+            <div class="forecast-controls">
+                <div class="selector-wrapper">
+                    <span>महिना:</span>
+                    <select id="forecast-month-select"></select>
+                </div>
+                <div class="selector-wrapper">
+                    <span>वर्ष:</span>
+                    <select id="forecast-year-select"></select>
+                </div>
+            </div>
+            <div class="table-container forecast-table-container">
+                <table id="forecast-table">
+                    <thead>
+                        <tr>
+                            <th>तारीख</th>
+                            <th>तिथी / नक्षत्र</th>
+                            <th>सूर्योदय / सूर्यास्त</th>
+                            <th>हवामान</th>
+                            <th>वाहन / पाऊस</th>
+                            <th>कृषी सल्ला</th>
+                        </tr>
+                    </thead>
+                    <tbody id="forecast-table-body">
+                        <!-- Dynamic rows -->
+                    </tbody>
+                </table>
+            </div>
+            <p class="forecast-note">Open-Meteo पासून हवामान अंदाज, पाचांग डेटाबेसमधून पारंपरिक वाहन, आणि हवामान-आधारित कृषी मार्गदर्शन.</p>
+        </div>
+
+        <!-- Bottom Section: Monsoon Nakshatras (Ingress Vahans Table) -->
+        <div class="glass-card">
+            <div class="card-header">
+                <h2><i class="v-icon">⛈️</i> मान्सून नक्षत्र वाहन आणि पर्जन्यमान सारणी (2026)</h2>
+                <span class="shaka-badge" style="background: rgba(76, 175, 80, 0.15); border-color: rgba(76, 175, 80, 0.3); color: var(--primary-light);">वार्षिक अहवाल</span>
+            </div>
+            <div class="table-container">
+                <table id="vahans-table">
+                    <thead>
+                        <tr>
+                            <th>नक्षत्र (Nakshatra)</th>
+                            <th>प्रारंभ तारीख (Ingress Date)</th>
+                            <th>वाहन (Vahan)</th>
+                            <th>पाऊस अंदाज (Rain level)</th>
+                            <th>वैशिष्ट्य (Description)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vahans-table-body">
+                        <!-- Dynamic table rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color rain-heavy" style="background-color: var(--accent-blue);"></div>
+                    <span>मुसळधार पाऊस (Heavy Rain)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color rain-medium" style="background-color: var(--primary-light);"></div>
+                    <span>चांगला पाऊस (Medium Rain)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color rain-low" style="background-color: var(--accent-gold);"></div>
+                    <span>अल्प पाऊस (Low/Uneven)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color rain-scant" style="background-color: var(--rain-scant);"></div>
+                    <span>पावसाची ओढ (Scant/Dry)</span>
+                </div>
+            </div>
+            <div>
+                <p>© २०२६ पंचांग कृषी मित्र. सर्व हक्क राखीव. | सूर्य-चंद्र गणित गणना Lahiri Ayanamsa आणि Skyfield वर आधारित.</p>
+                <p style="font-size: 0.75rem; margin-top: 0.3rem; opacity: 0.6;">टीप: हा अंदाज गणितीय मॉडेलवर आधारित आहे, प्रत्यक्ष नियोजनासाठी स्थानिक हवामान खात्याचा अंदाज नक्की तपासावा.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
