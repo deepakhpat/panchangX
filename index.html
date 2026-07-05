@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="पंचांग कृषी मित्र - शेतकऱ्यांसाठी पारंपरिक नक्षत्र वाहन आणि आधुनिक हवामान अंदाज यांचा मिलाफ करणारा हायब्रीड कृषी सल्लागार.">
-    <title>पंचांग कृषी मित्र | Panchang Krishi Mitra</title>
+    <title>PanchangX</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -158,29 +158,6 @@
             </div>
         </div>
 
-        <!-- Middle Section: Calendar view -->
-        <div class="glass-card calendar-card">
-            <div class="card-header">
-                <h2><i class="v-icon">📅</i> मासिक कृषी दिनदर्शिका (Monthly Agriculture Calendar)</h2>
-                <div class="calendar-controls">
-                    <button class="cal-btn" id="prev-month-btn">◀</button>
-                    <span class="current-month-display" id="current-month-label">-</span>
-                    <button class="cal-btn" id="next-month-btn">▶</button>
-                </div>
-            </div>
-            <!-- Grid headers for Weekdays -->
-            <div class="calendar-grid" id="calendar-grid-container">
-                <div class="weekday-header">रवि</div>
-                <div class="weekday-header">सोम</div>
-                <div class="weekday-header">मंगळ</div>
-                <div class="weekday-header">बुध</div>
-                <div class="weekday-header">गुरु</div>
-                <div class="weekday-header">शुक्र</div>
-                <div class="weekday-header">शनी</div>
-                <!-- Rest populated by JS -->
-            </div>
-        </div>
-
         <!-- Monthly Forecast Comparison -->
         <div class="glass-card forecast-card">
             <div class="card-header">
@@ -215,6 +192,29 @@
                 </table>
             </div>
             <p class="forecast-note">Open-Meteo पासून हवामान अंदाज, पाचांग डेटाबेसमधून पारंपरिक वाहन, आणि हवामान-आधारित कृषी मार्गदर्शन.</p>
+        </div>
+
+        <!-- Bottom Section: Calendar view -->
+        <div class="glass-card calendar-card">
+            <div class="card-header">
+                <h2><i class="v-icon">📅</i> मासिक कृषी दिनदर्शिका (Monthly Agriculture Calendar)</h2>
+                <div class="calendar-controls">
+                    <button class="cal-btn" id="prev-month-btn">◀</button>
+                    <span class="current-month-display" id="current-month-label">-</span>
+                    <button class="cal-btn" id="next-month-btn">▶</button>
+                </div>
+            </div>
+            <!-- Grid headers for Weekdays -->
+            <div class="calendar-grid" id="calendar-grid-container">
+                <div class="weekday-header">रवि</div>
+                <div class="weekday-header">सोम</div>
+                <div class="weekday-header">मंगळ</div>
+                <div class="weekday-header">बुध</div>
+                <div class="weekday-header">गुरु</div>
+                <div class="weekday-header">शुक्र</div>
+                <div class="weekday-header">शनी</div>
+                <!-- Rest populated by JS -->
+            </div>
         </div>
 
         <!-- Bottom Section: Monsoon Nakshatras (Ingress Vahans Table) -->
@@ -269,6 +269,6 @@
     </div>
 
     <!-- App Logic -->
-    <script src="app.js"></script>
+    <script src="app.js?v=2"></script>
 </body>
 </html>
