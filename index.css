@@ -126,6 +126,8 @@ header {
     padding: 0.25rem 1rem;
     gap: 0.5rem;
     transition: var(--transition);
+    min-width: 0;
+    overflow: hidden;
 }
 
 .selector-wrapper:hover, .selector-wrapper:focus-within {
@@ -153,6 +155,22 @@ select {
     background-position: right center;
     background-size: 10px auto;
 }
+
+select#district-select option {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#district-select {
+    max-width: 100%;
+    width: 180px;
+    min-width: 0;
+    flex: 1 1 auto;
+    display: block;
+}
+
 
 .geo-btn {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary));

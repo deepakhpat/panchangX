@@ -116,7 +116,7 @@ const MONTHS_MR = [
 async function init() {
     try {
         loaderMsg.textContent = "पंचांग डेटाबेस लोड करत आहे...";
-        const response = await fetch('panchang_database.json');
+        const response = await fetch('panchang_database.json?v=3');
         if (!response.ok) {
             throw new Error("डेटाबेस फाईल सापडली नाही! कृपया आधी डेटाबेस तयार करा.");
         }
