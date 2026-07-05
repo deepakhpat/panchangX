@@ -1,25 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --bg-gradient: linear-gradient(135deg, #0f1d13 0%, #080f0a 100%);
-    --card-bg: rgba(20, 36, 26, 0.65);
-    --card-border: rgba(46, 125, 50, 0.25);
-    --card-border-glow: rgba(76, 175, 80, 0.4);
+    --bg-gradient: linear-gradient(135deg, #a6ce75 0%, #eaf5e2 100%);
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(94, 140, 90, 0.18);
+    --card-border-glow: rgba(76, 175, 80, 0.28);
     
     --primary: #4caf50;
-    --primary-light: #81c784;
+    --primary-light: #d41b1b;
     --primary-dark: #2e7d32;
-    --accent-gold: #ffb300;
-    --accent-blue: #29b6f6;
+    --accent-gold: #f2b84b;
+    --accent-blue: #3fa9d6;
     
-    --text-main: #f1f8e9;
-    --text-muted: #a5d6a7;
+    --text-main: #233427;
+    --text-muted: #678168;
     --text-dark: #1b5e20;
     
-    --rain-heavy: #0288d1;
-    --rain-medium: #00acc1;
-    --rain-low: #d4e157;
-    --rain-scant: #ff8f00;
+    --rain-heavy: #2b7fff;
+    --rain-medium: #2fa8a4;
+    --rain-low: #c8b24a;
+    --rain-scant: #ef8f2a;
     
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --font-outfit: 'Outfit', sans-serif;
@@ -50,13 +50,13 @@ body {
     -webkit-backdrop-filter: blur(12px);
     border-radius: 16px;
     padding: 1.5rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 8px 24px rgba(84, 117, 77, 0.12);
     transition: var(--transition);
 }
 
 .glass-card:hover {
     border-color: var(--card-border-glow);
-    box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.15);
+    box-shadow: 0 10px 28px rgba(76, 175, 80, 0.14);
     transform: translateY(-2px);
 }
 
@@ -97,7 +97,7 @@ header {
     font-size: 1.8rem;
     font-weight: 900;
     letter-spacing: 0.5px;
-    background: linear-gradient(135deg, #ffffff, var(--text-muted));
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -120,7 +120,7 @@ header {
 .selector-wrapper {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.7);
     border: 1px solid var(--card-border);
     border-radius: 30px;
     padding: 0.25rem 1rem;
@@ -130,7 +130,7 @@ header {
 
 .selector-wrapper:hover, .selector-wrapper:focus-within {
     border-color: var(--primary-light);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.92);
 }
 
 .selector-wrapper i {
@@ -155,9 +155,9 @@ select {
 }
 
 .geo-btn {
-    background: var(--primary-dark);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
     border: 1px solid var(--primary);
-    color: var(--text-main);
+    color: white;
     border-radius: 30px;
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
@@ -170,8 +170,8 @@ select {
 }
 
 .geo-btn:hover {
-    background: var(--primary);
-    box-shadow: 0 0 12px var(--card-border-glow);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.18);
 }
 
 /* Dashboard Grid Layout */
@@ -193,7 +193,7 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(84, 117, 77, 0.12);
     padding-bottom: 0.8rem;
     margin-bottom: 1.2rem;
 }
@@ -246,8 +246,8 @@ select {
 }
 
 .panchang-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(247, 250, 243, 0.95);
+    border: 1px solid rgba(76, 175, 80, 0.12);
     border-radius: 12px;
     padding: 0.8rem;
     text-align: center;
@@ -255,8 +255,8 @@ select {
 }
 
 .panchang-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(76, 175, 80, 0.2);
+    background: rgba(240, 248, 235, 0.95);
+    border-color: rgba(76, 175, 80, 0.22);
 }
 
 .item-label {
@@ -283,10 +283,10 @@ select {
 .sun-times {
     display: flex;
     justify-content: space-around;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(242, 248, 236, 0.95);
     border-radius: 12px;
     padding: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(76, 175, 80, 0.12);
 }
 
 .sun-time {
@@ -335,8 +335,8 @@ select {
 }
 
 .weather-metric {
-    background: rgba(41, 182, 246, 0.05);
-    border: 1px solid rgba(41, 182, 246, 0.15);
+    background: rgba(240, 248, 252, 0.95);
+    border: 1px solid rgba(63, 169, 214, 0.16);
     border-radius: 12px;
     padding: 0.8rem;
     text-align: center;
@@ -362,8 +362,8 @@ select {
 }
 
 .advisory-body {
-    background: rgba(76, 175, 80, 0.05);
-    border: 1px solid rgba(76, 175, 80, 0.2);
+    background: rgba(245, 250, 240, 0.95);
+    border: 1px solid rgba(76, 175, 80, 0.16);
     border-radius: 14px;
     padding: 1.2rem;
 }
@@ -372,8 +372,8 @@ select {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: rgba(255, 179, 0, 0.08);
-    border: 1px solid rgba(255, 179, 0, 0.25);
+    background: rgba(255, 248, 231, 0.95);
+    border: 1px solid rgba(242, 184, 75, 0.25);
     border-radius: 10px;
     padding: 0.8rem 1rem;
     margin-bottom: 1rem;
@@ -420,24 +420,46 @@ select {
 
 .recommendations-list li {
     font-size: 0.95rem;
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin-bottom: 0.7rem;
     color: var(--text-main);
+    padding-left: 0;
 }
 
 .recommendations-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    top: 1px;
-    color: var(--primary-light);
-    font-weight: 900;
+    content: none;
 }
 
-.recommendations-list li.warning::before {
-    content: "⚠";
-    color: var(--accent-gold);
+.recommendations-list li.warning {
+    border-left: 3px solid rgba(242, 184, 75, 0.35);
+    padding-left: 0.5rem;
+}
+
+.advice-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+    line-height: 1.45;
+}
+
+.advice-icon {
+    font-size: 0.95rem;
+    margin-top: 0.05rem;
+    flex-shrink: 0;
+}
+
+.advice-label {
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-right: 0.2rem;
+    white-space: nowrap;
+}
+
+.advice-text {
+    color: var(--text-main);
 }
 
 /* Calendar Card layout */
@@ -495,8 +517,8 @@ select {
 
 .calendar-day {
     aspect-ratio: 1.1;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(76, 175, 80, 0.12);
     border-radius: 8px;
     padding: 0.4rem;
     display: flex;
@@ -508,8 +530,8 @@ select {
 }
 
 .calendar-day:hover {
-    background: rgba(76, 175, 80, 0.1);
-    border-color: rgba(76, 175, 80, 0.3);
+    background: rgba(238, 247, 232, 0.95);
+    border-color: rgba(76, 175, 80, 0.28);
 }
 
 .calendar-day.empty {
@@ -588,8 +610,8 @@ table {
 }
 
 th {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--primary-light);
+    background: rgba(246, 251, 241, 0.95);
+    color: var(--primary-dark);
     font-weight: 700;
     font-size: 0.9rem;
     padding: 0.8rem 1rem;
@@ -599,11 +621,11 @@ th {
 td {
     padding: 0.9rem 1rem;
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(84, 117, 77, 0.12);
 }
 
 tr:hover td {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(244, 250, 239, 0.95);
 }
 
 .vahan-badge {
@@ -681,7 +703,7 @@ footer {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(15, 29, 19, 0.95);
+    background: rgba(248, 252, 244, 0.96);
     display: flex;
     flex-direction: column;
     justify-content: center;
