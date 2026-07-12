@@ -379,6 +379,22 @@ select#district-select option {
     color: var(--text-muted);
 }
 
+/* Rain forecast grid side-by-side layout */
+.rain-forecast-grid, .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.rain-forecast-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: var(--primary-light);
+}
+.rain-forecast-item span {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
 .advisory-body {
     background: rgba(245, 250, 240, 0.95);
     border: 1px solid rgba(76, 175, 80, 0.16);
@@ -773,4 +789,114 @@ footer {
 .flex-col {
     display: flex;
     flex-direction: column;
+}
+
+/* Navigation Bar Styles */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 1rem;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    margin-bottom: 1.5rem;
+}
+
+.nav-brand {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-light);
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-dark);
+    transition: var(--transition);
+    border-radius: 3px;
+    transform-origin: 1px;
+}
+
+/* Burger Menu Animation */
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg);
+}
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        flex-direction: column;
+        align-items: flex-start;
+        background: var(--card-bg);
+        width: 280px;
+        height: 100vh;
+        padding: 6rem 2rem 2rem;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 1001;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid var(--card-border);
+        padding-bottom: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+        display: block;
+    }
+    
+    .burger-menu {
+        display: flex;
+    }
 }
