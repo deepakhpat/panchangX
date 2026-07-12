@@ -51,7 +51,7 @@
                         <option value="pune">पुणे (Pune)</option>
                     </select>
                 </div>
-               
+              
             </div>
         </header>
 
@@ -286,19 +286,24 @@
     </div>
 
     <!-- App Logic -->
-    <script src="app.js?v=3"></script>
+    <script src="app.js?v=4"></script>
     <script>
-        document.getElementById('burger-menu').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('nav-links').classList.toggle('active');
-        });
+        const burgerMenu = document.getElementById('burger-menu');
+        const navLinks = document.getElementById('nav-links');
         
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('burger-menu').classList.remove('active');
-                document.getElementById('nav-links').classList.remove('active');
+        if (burgerMenu && navLinks) {
+            burgerMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
             });
-        });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    burgerMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>

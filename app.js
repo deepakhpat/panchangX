@@ -147,12 +147,12 @@ async function init() {
         selectedDistrictId = districtSelect.value;
         
         // Event Listeners
-        districtSelect.addEventListener('change', handleDistrictChange);
-        geoBtn.addEventListener('click', handleGeolocation);
-        prevMonthBtn.addEventListener('click', () => navigateMonth(-1));
-        nextMonthBtn.addEventListener('click', () => navigateMonth(1));
-        forecastMonthSelect.addEventListener('change', handleForecastPeriodChange);
-        forecastYearSelect.addEventListener('change', handleForecastPeriodChange);
+        if (districtSelect) districtSelect.addEventListener('change', handleDistrictChange);
+        if (geoBtn) geoBtn.addEventListener('click', handleGeolocation);
+        if (prevMonthBtn) prevMonthBtn.addEventListener('click', () => navigateMonth(-1));
+        if (nextMonthBtn) nextMonthBtn.addEventListener('click', () => navigateMonth(1));
+        if (forecastMonthSelect) forecastMonthSelect.addEventListener('change', handleForecastPeriodChange);
+        if (forecastYearSelect) forecastYearSelect.addEventListener('change', handleForecastPeriodChange);
 
         setupForecastSelectors();
         
@@ -195,8 +195,10 @@ function handleGeolocation() {
         return;
     }
     
-    geoBtn.disabled = true;
-    geoBtn.innerHTML = "🛰️ शोधत आहे...";
+    if (geoBtn) {
+        geoBtn.disabled = true;
+        geoBtn.innerHTML = "🛰️ शोधत आहे...";
+    }
     
     navigator.geolocation.getCurrentPosition(
         async (position) => {
@@ -220,15 +222,19 @@ function handleGeolocation() {
             
             alert(`तुमचे स्थान शोधले! सर्वात जवळचा जिल्हा: ${districtSelect.options[districtSelect.selectedIndex].text}`);
             
-            geoBtn.disabled = false;
-            geoBtn.innerHTML = "🛰️ जवळचे स्थान शोधा";
+            if (geoBtn) {
+                geoBtn.disabled = false;
+                geoBtn.innerHTML = "🛰️ जवळचे स्थान शोधा";
+            }
             await updateDashboard();
         },
         (error) => {
             console.error(error);
             alert("स्थान शोधण्यात अडचण आली. कृपया मॅन्युअली जिल्हा निवडा.");
-            geoBtn.disabled = false;
-            geoBtn.innerHTML = "🛰️ जवळचे स्थान शोधा";
+            if (geoBtn) {
+                geoBtn.disabled = false;
+                geoBtn.innerHTML = "🛰️ जवळचे स्थान शोधा";
+            }
         }
     );
 }
